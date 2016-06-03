@@ -17,7 +17,6 @@ public:
 
 	// update the speed button
 	void updateMenuIntervalButton();
-
 	// implement the "static create()" method manually
 	CREATE_FUNC(GameMap);
 

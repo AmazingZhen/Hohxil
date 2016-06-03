@@ -40,7 +40,6 @@ bool GameMap::init() {
 	// 3. add your codes below...
 	createMap();
 
-
 	return true;
 }
 
