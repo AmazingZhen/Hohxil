@@ -11,6 +11,10 @@ class WolfFactory : public CreatureFactory
 
 		virtual void createCreature();
 
+		// added by XuYongzhe
+		// add a wolf in gameMap
+		virtual void createWolf(GameMap* gameMap, Vec2 &pos);
+
 };
 
 #endif // !__WOLF_FACTORY_H__

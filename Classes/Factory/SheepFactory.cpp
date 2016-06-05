@@ -34,3 +34,16 @@ void SheepFactory::createCreature()
 	//添加到食物链
 	FoodChain::getInstance()->addAggregation(sha);
 }
+
+void SheepFactory::createSheep(GameMap* gameMap, Vec2 &pos) {
+	SheepAggregation* sha = SheepAggregation::getInstance();
+
+	auto listener = createListener();
+	Creature* sheep = Sheep::create();
+	sha->addMember(sheep);
+	gameMap->addChild(sheep, 1);
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	sheep->setPosition(pos);
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), sheep);
+}

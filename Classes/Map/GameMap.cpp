@@ -2,6 +2,9 @@
 #include "LargeMap.h"
 #include "GameSchedule.h"
 #include "GamePause.h"
+#include "Component\DragLayer.h"
+#include "Component\DragItemImage.h"
+#include "Model\Creatures\Creature.h"
 
 USING_NS_CC;
 
@@ -39,6 +42,8 @@ bool GameMap::init() {
 	/////////////////////////////
 	// 3. add your codes below...
 	createMap();
+
+	createDragMenu();
 
 	return true;
 }
@@ -154,4 +159,20 @@ void GameMap::createMap() {
 	background->setAnchorPoint(Vec2(0, 0));
 
 	this->addChild(background);
+}
+
+
+void GameMap::createDragMenu() {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
+	// Adding DragAnimalPanel
+	auto sheepDragMenuImage = DragItemImage::create("CloseNormal.png", "CloseSelected.png", this, Sheep);
+	auto wolfDragMenuImage = DragItemImage::create("CloseNormal.png", "CloseSelected.png", this, Wolf);
+	//DragLayer* layer = DragLayer::create(sheepDragMenuImage, wolfDragMenuImage);
+	DragLayer* layer = DragLayer::create();
+	layer->addDragItem(sheepDragMenuImage);
+	layer->addDragItem(wolfDragMenuImage);
+	layer->setPosition(visibleSize.width / 2, 0);
+	this->addChild(layer, 1);
 }
