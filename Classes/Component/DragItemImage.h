@@ -25,7 +25,7 @@ private:
 public:
 	void initOriginalPoint(Point &p);
 	Point getOriginalPoint();
-	static DragItemImage* create(const string& normalImage, const string& selectedImage, GameMap* gameMap, CreatureSpecies spec);
+	static DragItemImage* create(const string& normalImage, const string& selectedImage, const string& disabledImage, GameMap* gameMap, CreatureSpecies spec);
 };
 
 #endif

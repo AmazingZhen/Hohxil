@@ -11,9 +11,9 @@ DragItemImage::DragItemImage(GameMap* gameMap, CreatureSpecies spec) {
 	this->sum = 5;
 }
 
-DragItemImage* DragItemImage::create(const string& normalImage, const string& selectedImage, GameMap* gameMap, CreatureSpecies spec) {
+DragItemImage* DragItemImage::create(const string& normalImage, const string& selectedImage, const string& disabledImage, GameMap* gameMap, CreatureSpecies spec) {
 	DragItemImage *dragMenuItemImage = new (std::nothrow) DragItemImage(gameMap, spec);
-	if (dragMenuItemImage && dragMenuItemImage->initWithNormalImage(normalImage, selectedImage, "", nullptr)) {
+	if (dragMenuItemImage && dragMenuItemImage->initWithNormalImage(normalImage, selectedImage, disabledImage, nullptr)) {
 		dragMenuItemImage->initMouseLintener();
 		dragMenuItemImage->retain();
 		return dragMenuItemImage;
@@ -86,10 +86,10 @@ void DragItemImage::onTouchEnded(Touch* touch, Event* event) {
 			case Grass:
 				break;
 			case Sheep:
-				sheepFactory.createSheep(gameMap, touch->getLocation());
+				sheepFactory.createSheep(this->gameMap, touch->getLocation());
 				break;
 			case Wolf:
-				wolfFactory.createWolf(gameMap, touch->getLocation());
+				wolfFactory.createWolf(this->gameMap, touch->getLocation());
 				break;
 			default:
 				break;

@@ -167,12 +167,12 @@ void GameMap::createDragMenu() {
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	// Adding DragAnimalPanel
-	auto sheepDragMenuImage = DragItemImage::create("CloseNormal.png", "CloseSelected.png", this, Sheep);
-	auto wolfDragMenuImage = DragItemImage::create("CloseNormal.png", "CloseSelected.png", this, Wolf);
+	auto sheepDragMenuImage = DragItemImage::create("UI/sheep.jpg", "UI/sheep.jpg", "UI/sheep.jpg", this, Sheep);
+	auto wolfDragMenuImage = DragItemImage::create("UI/wolf.jpg", "UI/wolf.jpg", "UI/wolf.jpg", this, Wolf);
 	//DragLayer* layer = DragLayer::create(sheepDragMenuImage, wolfDragMenuImage);
 	DragLayer* layer = DragLayer::create();
 	layer->addDragItem(sheepDragMenuImage);
 	layer->addDragItem(wolfDragMenuImage);
 	layer->setPosition(visibleSize.width / 2, 0);
-	this->addChild(layer, 1);
+	this->addChild(layer);
 }
