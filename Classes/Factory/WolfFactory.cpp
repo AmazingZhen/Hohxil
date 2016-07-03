@@ -31,13 +31,13 @@ void WolfFactory::createCreature()
 	FoodChain::getInstance()->addAggregation(woa);
 }
 
-void WolfFactory::createWolf(GameMap* gameMap, Vec2 &pos) {
+void WolfFactory::createWolf(Scene* gameScene, Vec2 &pos) {
 	WolfAggregation* woa = WolfAggregation::getInstance();
 
 	auto listener = createListener();
 	Creature* wolf = Wolf::create();
 	woa->addMember(wolf);
-	gameMap->addChild(wolf, 1);
+	gameScene->addChild(wolf, 1);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	wolf->setPosition(pos);

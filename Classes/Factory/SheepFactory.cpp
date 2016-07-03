@@ -11,6 +11,8 @@ void SheepFactory::createCreature()
 
 	auto listener = createListener();
 
+	auto gameMap = largeMap->getGameMapSpriteById(id)->getGameMap();
+
 	//≥ı ºªØ—Ú
 	int sheepNum = 20;
 	for (int i = 0; i < sheepNum; i++)
@@ -35,13 +37,18 @@ void SheepFactory::createCreature()
 	FoodChain::getInstance()->addAggregation(sha);
 }
 
-void SheepFactory::createSheep(GameMap* gameMap, Vec2 &pos) {
+/**
+* added by xuyongzhe
+*/
+void SheepFactory::createSheep(Scene* gameScene, Vec2 &pos) {
+
 	SheepAggregation* sha = SheepAggregation::getInstance();
 
 	auto listener = createListener();
 	Creature* sheep = Sheep::create();
 	sha->addMember(sheep);
-	gameMap->addChild(sheep, 1);
+	gameScene->addChild(sheep, 1);
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	sheep->setPosition(pos);

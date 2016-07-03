@@ -23,7 +23,7 @@ public:
 private:
 	void createMenu();
 	void createMap(); 
-	void createDragMenu();
+	void createDragMenu();  
 
 };
 

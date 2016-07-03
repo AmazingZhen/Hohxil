@@ -12,13 +12,15 @@ DragItemImage::DragItemImage(GameMap* gameMap, CreatureSpecies spec) {
 }
 
 DragItemImage* DragItemImage::create(const string& normalImage, const string& selectedImage, const string& disabledImage, GameMap* gameMap, CreatureSpecies spec) {
+	//log("DragItemImage gameMap id======>%d", gameMap->getId());
+	//log("GameMap reference after ======> %ld", gameMap);
 	DragItemImage *dragMenuItemImage = new (std::nothrow) DragItemImage(gameMap, spec);
 	if (dragMenuItemImage && dragMenuItemImage->initWithNormalImage(normalImage, selectedImage, disabledImage, nullptr)) {
 		dragMenuItemImage->initMouseLintener();
 		dragMenuItemImage->retain();
 		return dragMenuItemImage;
 	}
-	CC_SAFE_DELETE(dragMenuItemImage);
+	//CC_SAFE_DELETE(dragMenuItemImage);
 	return nullptr;
 }
 
@@ -86,10 +88,10 @@ void DragItemImage::onTouchEnded(Touch* touch, Event* event) {
 			case Grass:
 				break;
 			case Sheep:
-				sheepFactory.createSheep(this->gameMap, touch->getLocation());
+				sheepFactory.createSheep((Scene*)this->gameMap->getParent(), touch->getLocation());
 				break;
 			case Wolf:
-				wolfFactory.createWolf(this->gameMap, touch->getLocation());
+				wolfFactory.createWolf((Scene*)this->gameMap->getParent(), touch->getLocation());
 				break;
 			default:
 				break;

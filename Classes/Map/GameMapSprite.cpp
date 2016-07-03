@@ -49,6 +49,7 @@ void GameMapSprite::initGameMap() {
 
 	// Important! To avoid released by cocos2d itself.
 	gameMap->retain();
+
 }
 
 void GameMapSprite::updateGameMap() {

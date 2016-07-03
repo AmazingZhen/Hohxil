@@ -30,6 +30,7 @@ bool GameSchedule::init() {
 
 	for (int i = 0; i < largeMap->getMapSize(); i++) {
 		auto sheepFactory = SheepFactory(i);
+		
 		sheepFactory.createCreature();
 
 		auto wolfFactory = WolfFactory(i);

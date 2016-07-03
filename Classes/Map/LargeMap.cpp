@@ -1,6 +1,7 @@
 #include "LargeMap.h"
 #include "GameSchedule.h"
 #include "GamePause.h"
+#include "GameMap.h"
 
 Scene* LargeMap::largeMap = nullptr;
 cocos2d::Vector<GameMapSprite*> LargeMap::maps = cocos2d::Vector<GameMapSprite*>();
@@ -190,8 +191,10 @@ void LargeMap::createMaps(int mapNum) {
 
 	for (int i = 0; i < mapNum; i++) {
 		auto newMap = createMap();
-		Size mapSize = newMap->getContentSize();
+		GameMap* gameMap = (GameMap*)newMap->getGameMap();
 
+		Size mapSize = newMap->getContentSize();
+		
 		float xPos = randomNum(mapSize.width / 2, visibleSize.width - mapSize.width / 2);
 		float yPos = randomNum(mapSize.height / 2, visibleSize.height - mapSize.height / 2);
 		newMap->setPosition(Vec2(xPos, yPos));
