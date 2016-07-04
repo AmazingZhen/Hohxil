@@ -1,5 +1,7 @@
 #include "GameSchedule.h"
-#include "map/LargeMap.h"
+#include "Map\LargeMap.h"
+#include "Map\GameFail.h"
+#include "Map\GameSuccess.h"
 #include "Factory\GrassFactory.h"
 #include "Factory\SheepFactory.h"
 #include "Factory\WolfFactory.h"
@@ -11,6 +13,7 @@ bool GameSchedule::isPaused = true;
 int GameSchedule::updateIntervalTimes = 40;
 int GameSchedule::count = 0;
 int GameSchedule::speed = 1;
+int GameSchedule::totalTimes = 0;
 
 GameSchedule* GameSchedule::getInstance() {
 	if (!gameSchedule) {
@@ -80,7 +83,7 @@ void GameSchedule::setSpeed(int speed) {
 	this->updateIntervalTimes = MAX_UPDATE_INTERVAL / speed;
 }
 
-// Update the hole game.
+// Update the whole game.
 void GameSchedule::globalUpdate(float time) {
 	if (isPaused)
 		return;
@@ -92,12 +95,16 @@ void GameSchedule::globalUpdate(float time) {
 	else {
 		count = 0;
 
+		++GameSchedule::totalTimes;
+
 		// Main game logic should be written here !!
 		wolfEatSheep();
 		sheepEatGrass();
 
 		sheepMove();
 		wolfMove();
+
+		checkSuccessOrFail();
 	}
 
 }
@@ -160,4 +167,26 @@ void GameSchedule::wolfEatSheep() {
 	}
 
 	sheepAgg->clearingDeathAndUpdate();
+}
+
+void GameSchedule::checkSuccessOrFail() {
+	auto wolfAgg = WolfAggregation::getInstance();
+	auto wolfs = wolfAgg->getAllMembers();
+
+	auto sheepAgg = SheepAggregation::getInstance();
+	auto sheeps = sheepAgg->getAllMembers();
+
+	if (GameSchedule::totalTimes >= GameSchedule::WIN_TIMES) {
+		end();
+		//pause();
+		auto scene = GameSuccess::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+	} else if (wolfs.size() == 0 || sheeps.size() == 0) {
+		end();
+		//pause();
+		auto scene = GameFail::createScene();
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
+	} else {
+		// do nothing
+	}
 }

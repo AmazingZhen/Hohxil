@@ -31,6 +31,8 @@ private:
 
 	void sheepEatGrass();
 	void wolfEatSheep();
+   
+	void checkSuccessOrFail();
 
 	// ------------------------------
 
@@ -40,6 +42,8 @@ private:
 	static int updateIntervalTimes;
 	static int count;
 	static int speed;
+	static int totalTimes;
+	static const int WIN_TIMES = 50;
 };
 
 #endif // _GAME_SCHEDULE_
