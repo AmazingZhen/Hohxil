@@ -126,33 +126,23 @@ void Animal::setBirthCoolDown(const float& birthCoolDown)
 	this->birthCoolDown = birthCoolDown;
 }
 
-//移动
 void Animal::move(const Size& boundary)
 {
-	// 获取当前位置
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
 	float currentX = getPosition().x;
 	float currentY = getPosition().y;
 
-	// 获取新位置x的下界
-	float xMin = MAX(currentX - sqrt(rangeOfActivity), 0.0f);
-	// 获取新位置x的上界
-	float xMax = MIN(currentX + sqrt(rangeOfActivity), boundary.width);
-	// 获取新位置x
-	float x = (float)randomNum((double)xMin, (double)xMax);
-	assert((x - currentX) * (x - currentX) < rangeOfActivity * rangeOfActivity);
+	float x;
+	do {
+		x = randomNum(currentX - rangeOfActivity, currentX + rangeOfActivity);
+	} while (x < origin.x || x > origin.x + visibleSize.width);
 
-	// 计算|y0 - y|的上界
-	float tempUpperBound = sqrt(rangeOfActivity * rangeOfActivity - (x - currentX) * (x - currentX));
-	// 获取新位置y的下界
-	float yMin = MAX(currentY - tempUpperBound, 0.0f);
-	// 获取新位置y的上界
-	float yMax = MIN(currentY + tempUpperBound, boundary.width);
-	// 获取新位置y
-	float y = (float)randomNum((double)yMin, (double)yMax);
-	assert((x - currentX) * (x - currentX) + (y - currentY) * (y - currentY) <= rangeOfActivity * rangeOfActivity);
-
-	// 移动到新位置
-	//setPosition(Vec2(x, y));
+	float y;
+	do {
+		y = randomNum(currentY - rangeOfActivity, currentY + rangeOfActivity);
+	} while (y < origin.y || y > origin.y + visibleSize.height);
 
 	auto act = MoveTo::create(1.0f, Vec2(x, y));
 	this->runAction(act);
