@@ -126,10 +126,9 @@ void Animal::setBirthCoolDown(const float& birthCoolDown)
 	this->birthCoolDown = birthCoolDown;
 }
 
-void Animal::move(const Size& boundary)
+void Animal::move()
 {
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Size boundary = Director::getInstance()->getVisibleSize();
 
 	float currentX = getPosition().x;
 	float currentY = getPosition().y;
@@ -137,13 +136,18 @@ void Animal::move(const Size& boundary)
 	float x;
 	do {
 		x = randomNum(currentX - rangeOfActivity, currentX + rangeOfActivity);
-	} while (x < origin.x || x > origin.x + visibleSize.width);
+	} while (x < 0 || x > boundary.width);
 
 	float y;
 	do {
 		y = randomNum(currentY - rangeOfActivity, currentY + rangeOfActivity);
-	} while (y < origin.y || y > origin.y + visibleSize.height);
+	} while (y < 0 || y > boundary.height);
 
-	auto act = MoveTo::create(1.0f, Vec2(x, y));
-	this->runAction(act);
+	if ((Scene*)this->getParent() == Director::getInstance()->getRunningScene()) {
+		auto act = MoveTo::create(1.0f, Vec2(x, y));
+		this->runAction(act);
+	}
+	else {
+		this->setPosition(Vec2(x, y));
+	}
 }

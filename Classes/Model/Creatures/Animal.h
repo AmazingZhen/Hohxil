@@ -46,7 +46,7 @@ class Animal : public Creature
 		void setBirthCoolDown(const float& birthCoolDown);
 
 		// 移动
-		virtual void move(const Size& boundary);
+		virtual void move();
 		//食物短缺的影响
 		virtual void influenceOfFoodShortage() = 0;
 

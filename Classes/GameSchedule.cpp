@@ -121,11 +121,8 @@ void GameSchedule::sheepMove() {
 	auto sheepAgg = SheepAggregation::getInstance();
 	auto sheeps = sheepAgg->getAllMembers();
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	for (int i = 0; i < sheeps.size(); i++) {
-		dynamic_cast<class Sheep*>(sheeps[i])->move(visibleSize);
+		dynamic_cast<class Sheep*>(sheeps[i])->move();
 	}
 }
 
@@ -133,11 +130,8 @@ void GameSchedule::wolfMove() {
 	auto wolfAgg = WolfAggregation::getInstance();
 	auto wolfs = wolfAgg->getAllMembers();
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
 	for (int i = 0; i < wolfs.size(); i++) {
-		dynamic_cast<class Wolf*>(wolfs[i])->move(visibleSize);
+		dynamic_cast<class Wolf*>(wolfs[i])->move();
 	}
 }
 
