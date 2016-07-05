@@ -57,15 +57,15 @@ void GameMapSprite::updateGameMap() {
 	MenuItemImage* intervalItem = (MenuItemImage*)this->getGameMap()->getChildByTag(1)->getChildByName("Menu")->getChildByName("Interval Button");
 
 	if (speed == 2) {
-		intervalItem->setNormalImage(Sprite::create("UI/SpeedTwoNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("UI/SpeedTwoSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("SpeedTwoNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("SpeedTwoSelected.png"));
 	}
 	else if (speed == 4) {
-		intervalItem->setNormalImage(Sprite::create("UI/SpeedFourNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("UI/SpeedFourSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("SpeedFourNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("SpeedFourSelected.png"));
 	}
 	else if (speed == 1) {
-		intervalItem->setNormalImage(Sprite::create("UI/SpeedOneNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("UI/SpeedOneSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("SpeedOneNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("SpeedOneSelected.png"));
 	}
 }

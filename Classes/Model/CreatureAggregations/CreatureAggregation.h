@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "..\Creatures\Creature.h"
+#include "Creature.h"
 
 using std::vector;
 

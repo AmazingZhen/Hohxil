@@ -1,5 +1,5 @@
 #include "Grass.h"
-#include "..\Values\ModelValues.h"
+#include "ModelValues.h"
 
 // 草对象的编号计数器
 int Grass::grassIdCounter = 0;

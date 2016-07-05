@@ -2,8 +2,8 @@
 #define DRAG_ANIMAL_SPRITE_H
 
 #include "cocos2d.h"
-#include "Map\GameMap.h"
-#include "Model\Creatures\Creature.h"
+#include "GameMap.h"
+#include "Creature.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ private:
 	void onTouchMoved(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);
 public:
-	void initOriginalPoint(Point &p);
+	void initOriginalPoint(const Point &p);
 	Point getOriginalPoint();
 	static DragItemImage* create(const string& normalImage, const string& selectedImage, const string& disabledImage,
 		GameMap* gameMap, CreatureSpecies spec);

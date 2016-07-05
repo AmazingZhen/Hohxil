@@ -24,10 +24,10 @@ void ModelValues::loadStaticValues()
 	basicMass[3] = 100.0f;
 	basicMass[4] = 150.0f;
 	textureFilePath[0] = "";
-	textureFilePath[1] = "creature/Grass.png";
-	textureFilePath[2] = "UI/CloseNormal.png";
-	textureFilePath[3] = "creature/Sheep.png";
-	textureFilePath[4] = "creature/Wolf.png";
+	textureFilePath[1] = "Grass.png";
+	textureFilePath[2] = "CloseNormal.png";
+	textureFilePath[3] = "Sheep.png";
+	textureFilePath[4] = "Wolf.png";
 
 	basicHealth[0] = 0.0f;
 	basicHealth[1] = 0.0f;

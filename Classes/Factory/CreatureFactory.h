@@ -1,9 +1,9 @@
 #ifndef __CREATURE_FACTORY_H__
 #define __CREATURE_FACTORY_H__
 
-#include "..\Model\Creatures\Creature.h"
-#include "..\Model\Ecosystem\FoodChain.h"
-#include "Map\GameMapSprite.h"
+#include "Creature.h"
+#include "FoodChain.h"
+#include "GameMapSprite.h"
 
 class CreatureFactory 
 {

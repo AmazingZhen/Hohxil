@@ -1,7 +1,7 @@
 #ifndef __WOLF_AGGREGATION_h__
 #define __WOLF_AGGREGATION_h__
 
-#include "..\Creatures\Wolf.h"
+#include "Wolf.h"
 #include "CreatureAggregation.h"
 
 class WolfAggregation : public CreatureAggregation

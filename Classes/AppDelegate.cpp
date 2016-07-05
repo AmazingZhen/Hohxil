@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Map\LargeMap.h"
+#include "LargeMap.h"
 
 USING_NS_CC;
 

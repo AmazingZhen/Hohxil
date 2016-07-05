@@ -1,7 +1,7 @@
 #ifndef __GRASS_AGGREGATION_h__
 #define __GRASS_AGGREGATION_h__
 
-#include "..\Creatures\Grass.h"
+#include "Grass.h"
 #include "CreatureAggregation.h"
 
 class GrassAggregation : public CreatureAggregation

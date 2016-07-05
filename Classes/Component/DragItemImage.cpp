@@ -1,8 +1,8 @@
 #include "DragItemImage.h"
 #include "DragLayer.h"
-#include "Map\GameMap.h"
-#include "Factory\SheepFactory.h"
-#include "Factory\WolfFactory.h"
+#include "GameMap.h"
+#include "SheepFactory.h"
+#include "WolfFactory.h"
 
 DragItemImage::DragItemImage(GameMap* gameMap, CreatureSpecies spec) {
 	this->gameMap = gameMap;
@@ -24,7 +24,7 @@ DragItemImage* DragItemImage::create(const string& normalImage, const string& se
 	return nullptr;
 }
 
-void DragItemImage::initOriginalPoint(Point &p) {
+void DragItemImage::initOriginalPoint(const Point &p) {
 	this->originPos = p;
 }
 

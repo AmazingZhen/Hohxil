@@ -2,7 +2,7 @@
 #define __SHEEP_FACTORY_H__
 
 #include "CreatureFactory.h"
-#include "Map\GameMap.h"
+#include "GameMap.h"
 
 class SheepFactory : public CreatureFactory
 {
@@ -14,7 +14,7 @@ class SheepFactory : public CreatureFactory
 
 		// added by XuYongzhe
 		// add a sheep in gameMap
-		virtual void createSheep(Scene* gameScene, Vec2 &pos);
+		virtual void createSheep(Scene* gameScene, Vec2 pos);
 };
 
 #endif // !__SHEEP_FACTORY_H__

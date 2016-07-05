@@ -4,7 +4,7 @@
 #define SPECIES_KINDS 5
 
 #include <vector>
-#include "..\Creatures\Creature.h"
+#include "Creature.h"
 
 using std::vector;
 using std::string;
