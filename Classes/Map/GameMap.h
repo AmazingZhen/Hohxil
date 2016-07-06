@@ -24,6 +24,11 @@ private:
 	void createMenu();
 	void createMap(); 
 	void createDragMenu();  
+	void createTimeLabel();
+	void updateTime(float dt);
+
+private:
+	cocos2d::Label* timeLabel;
 
 };
 

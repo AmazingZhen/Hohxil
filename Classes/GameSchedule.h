@@ -12,6 +12,7 @@ class GameSchedule : public Ref
 {
 public:
     static GameSchedule* getInstance();
+	static int getLeftTimes();
     void start();
     void end();
     void pause();
@@ -42,7 +43,7 @@ private:
 	static int updateIntervalTimes;
 	static int count;
 	static int speed;
-	static int totalTimes;
+	static int leftTimes;
 	static const int WIN_TIMES = 50;
 };
 

@@ -13,7 +13,7 @@ bool GameSchedule::isPaused = true;
 int GameSchedule::updateIntervalTimes = 40;
 int GameSchedule::count = 0;
 int GameSchedule::speed = 1;
-int GameSchedule::totalTimes = 0;
+int GameSchedule::leftTimes = GameSchedule::WIN_TIMES;
 
 GameSchedule* GameSchedule::getInstance() {
 	if (!gameSchedule) {
@@ -95,7 +95,7 @@ void GameSchedule::globalUpdate(float time) {
 	else {
 		count = 0;
 
-		++GameSchedule::totalTimes;
+		--GameSchedule::leftTimes;
 
 		// Main game logic should be written here !!
 		wolfEatSheep();
@@ -170,7 +170,7 @@ void GameSchedule::checkSuccessOrFail() {
 	auto sheepAgg = SheepAggregation::getInstance();
 	auto sheeps = sheepAgg->getAllMembers();
 
-	if (GameSchedule::totalTimes >= GameSchedule::WIN_TIMES) {
+	if (GameSchedule::leftTimes <= 0) {
 		end();
 		//pause();
 		auto scene = GameSuccess::createScene();
@@ -183,4 +183,8 @@ void GameSchedule::checkSuccessOrFail() {
 	} else {
 		// do nothing
 	}
+}
+
+int GameSchedule::getLeftTimes() {
+	return leftTimes;
 }
