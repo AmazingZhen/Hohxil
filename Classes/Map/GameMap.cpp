@@ -47,6 +47,7 @@ bool GameMap::init() {
 
 	createTimeLabel();
 
+
 	return true;
 }
 
@@ -166,6 +167,7 @@ void GameMap::createMap() {
 
 void GameMap::createDragMenu() {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	// Adding DragAnimalPanel
 	auto sheepDragMenuImage = DragItemImage::create("UI/sheep.jpg", "UI/sheep.jpg", "UI/sheep.jpg", this, Sheep);
@@ -185,8 +187,7 @@ void GameMap::createTimeLabel() {
 	timeLabel->setColor(Color3B::BLACK);
 	timeLabel->setAnchorPoint(Vec2(0, 0));
 	//timeLabel->setPosition(visibleSize.width - timeLabel->getWidth(), 0);
-	log("width===>%d    height===>%d", timeLabel->getContentSize().width, timeLabel->getContentSize().height);
-	timeLabel->setPosition(20, visibleSize.height-60);
+	timeLabel->setPosition(20, visibleSize.height - 60);
 	this->addChild(timeLabel, 15);
 	schedule(schedule_selector(GameMap::updateTime), UPDATE_INTERVAL);
 }

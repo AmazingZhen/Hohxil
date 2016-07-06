@@ -7,6 +7,7 @@
 #include "Factory\WolfFactory.h"
 #include "Model\CreatureAggregations\SheepAggregation.h"
 #include "Model\CreatureAggregations\WolfAggregation.h"
+#include "Model\Creatures\Sheep.h"
 
 GameSchedule* GameSchedule::gameSchedule = nullptr;
 bool GameSchedule::isPaused = true;
@@ -104,6 +105,8 @@ void GameSchedule::globalUpdate(float time) {
 		sheepMove();
 		wolfMove();
 
+		sheepBreed();
+		
 		checkSuccessOrFail();
 	}
 
@@ -161,6 +164,42 @@ void GameSchedule::wolfEatSheep() {
 	}
 
 	sheepAgg->clearingDeathAndUpdate();
+}
+
+void GameSchedule::sheepBreed() {
+	auto sheepAgg = SheepAggregation::getInstance();
+	auto sheeps = sheepAgg->getAllMembers();
+
+	for (int cur_sheep = 0; cur_sheep < sheeps.size(); cur_sheep++) {
+		for (int next_sheep = cur_sheep + 1; next_sheep < sheeps.size(); next_sheep++) {
+			if (sheeps[cur_sheep]->getParent() != sheeps[next_sheep]->getParent()) {
+				continue;
+			}
+
+			if (sheeps[cur_sheep]->getBoundingBox().intersectsRect(sheeps[next_sheep]->getBoundingBox())) {
+				dynamic_cast<class Sheep*>(sheeps[cur_sheep])->breed(dynamic_cast<class Sheep*>(sheeps[next_sheep]));
+				break;
+			}
+		}
+	}
+}
+
+void GameSchedule::wolfBreed() {
+	auto wolfAgg = SheepAggregation::getInstance();
+	auto wolfs = wolfAgg->getAllMembers();
+
+	for (int cur_wolf = 0; cur_wolf < wolfs.size(); cur_wolf++) {
+		for (int next_wolf = cur_wolf + 1; next_wolf < wolfs.size(); next_wolf++) {
+			if (wolfs[cur_wolf]->getParent() != wolfs[next_wolf]->getParent()) {
+				continue;
+			}
+
+			if (wolfs[cur_wolf]->getBoundingBox().intersectsRect(wolfs[next_wolf]->getBoundingBox())) {
+				dynamic_cast<class Sheep*>(wolfs[cur_wolf])->breed(dynamic_cast<class Sheep*>(wolfs[next_wolf]));
+				break;
+			}
+		}
+	}
 }
 
 void GameSchedule::checkSuccessOrFail() {

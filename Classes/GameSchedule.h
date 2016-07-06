@@ -27,6 +27,9 @@ private:
 
 	// --------- Game logic ---------
 
+	void sheepBreed();
+	void wolfBreed();
+
 	void sheepMove();
 	void wolfMove();
 

@@ -47,6 +47,7 @@ class Animal : public Creature
 
 		// 移动
 		virtual void move();
+
 		//食物短缺的影响
 		virtual void influenceOfFoodShortage() = 0;
 

@@ -30,6 +30,7 @@ private:
 private:
 	cocos2d::Label* timeLabel;
 
+
 };
 
 #endif // _GAME_MAP_H_

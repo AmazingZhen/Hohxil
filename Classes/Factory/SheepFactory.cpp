@@ -9,8 +9,6 @@ void SheepFactory::createCreature()
     SheepAggregation* sha = SheepAggregation::getInstance();
 	LargeMap* largeMap = (LargeMap*)LargeMap::getInstance();
 
-	auto listener = createListener();
-
 	auto gameMap = largeMap->getGameMapSpriteById(id)->getGameMap();
 
 	//初始化羊
@@ -28,9 +26,6 @@ void SheepFactory::createCreature()
 		Vec2 origin = Director::getInstance()->getVisibleOrigin();
 		sheep->setPosition(Vec2(origin.x + randomNum(0.0, visibleSize.width),
 			origin.y + randomNum(0.0, visibleSize.height)));
-
-		// Add a listener to it.
-		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), sheep);
 	}
 
 	//添加到食物链

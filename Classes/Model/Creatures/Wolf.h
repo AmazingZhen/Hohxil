@@ -18,6 +18,9 @@ class Wolf : public Animal
 		//食物短缺的影响
 		virtual void influenceOfFoodShortage();
 
+		// 繁殖
+		void breed(Wolf *other);
+
 	private:
 		static int wolfIdCounter; // 狼对象的编号计数器
 

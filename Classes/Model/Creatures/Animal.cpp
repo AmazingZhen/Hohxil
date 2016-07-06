@@ -128,6 +128,16 @@ void Animal::setBirthCoolDown(const float& birthCoolDown)
 
 void Animal::move()
 {
+	if (this->getBirthCoolDown() < ModelValues::getInstance()->getBirthCoolDown(this->species)) {
+		auto birthCD = this->getBirthCoolDown();
+		this->setBirthCoolDown(birthCD + 20);
+	}
+
+	this->lifeProgress++;
+	if (lifeProgress >= 15) {
+		this->setHealth(0);
+	}
+
 	Size boundary = Director::getInstance()->getVisibleSize();
 
 	float currentX = getPosition().x;

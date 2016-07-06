@@ -11,8 +11,9 @@ DragItemImage::DragItemImage(GameMap* gameMap, CreatureSpecies spec) {
 	this->sum = 5;
 }
 
-DragItemImage* DragItemImage::create(const string& normalImage, const string& selectedImage, 
-	const string& disabledImage, GameMap* gameMap, CreatureSpecies spec) {
+DragItemImage* DragItemImage::create(const string& normalImage, const string& selectedImage, const string& disabledImage, GameMap* gameMap, CreatureSpecies spec) {
+	//log("DragItemImage gameMap id======>%d", gameMap->getId());
+	//log("GameMap reference after ======> %ld", gameMap);
 	DragItemImage *dragMenuItemImage = new (std::nothrow) DragItemImage(gameMap, spec);
 	if (dragMenuItemImage && dragMenuItemImage->initWithNormalImage(normalImage, selectedImage, disabledImage, nullptr)) {
 		dragMenuItemImage->initMouseLintener();

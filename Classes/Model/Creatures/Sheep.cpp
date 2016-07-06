@@ -1,5 +1,6 @@
 #include "Sheep.h"
 #include "..\Values\ModelValues.h"
+#include "..\CreatureAggregations\SheepAggregation.h"
 
 // 绵羊对象的编号计数器
 int Sheep::sheepIdCounter = 0;
@@ -12,7 +13,7 @@ Sheep::Sheep()
 	ModelValues::getInstance()->getBasicHealth(CreatureSpecies::Sheep),
 	ModelValues::getInstance()->getRangeOfActivity(CreatureSpecies::Sheep),
 	ModelValues::getInstance()->getPreyedSpeciesList(CreatureSpecies::Sheep),
-	ModelValues::getInstance()->getBirthCoolDown(CreatureSpecies::Sheep)),
+	0),
 	healthReducedByFoodShortage(ModelValues::getInstance()->getBasicHealthReducedByFoodShortage(CreatureSpecies::Sheep))
 {
 
@@ -63,4 +64,24 @@ void Sheep::influenceOfFoodShortage()
 {
 	healthReducedByFoodShortage = (1.0f - intake / ModelValues::getInstance()->getAppetite(CreatureSpecies::Sheep))
 		* ModelValues::getInstance()->getBasicHealthReducedByFoodShortage(CreatureSpecies::Sheep);
+}
+
+void Sheep::breed(Sheep *other) {
+	if (this->getLifeProgress() > 5 && other->getLifeProgress() > 5 &&
+		this->getBirthCoolDown() >= ModelValues::getInstance()->getBirthCoolDown(this->species)
+		&& other->getBirthCoolDown() >= ModelValues::getInstance()->getBirthCoolDown(other->species))
+	{
+		auto scene = this->getParent();
+
+		this->setBirthCoolDown(0);
+		other->setBirthCoolDown(0);
+
+		auto new_sheep = Sheep::create();
+		new_sheep->setBirthCoolDown(0);
+		SheepAggregation::getInstance()->addMember(new_sheep);
+
+		this->getParent()->addChild(new_sheep, 1);
+		new_sheep->setPosition(this->getPosition());
+	}
+
 }

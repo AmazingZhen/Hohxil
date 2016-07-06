@@ -21,6 +21,8 @@ class Sheep : public Animal
 		//食物短缺的影响
 		virtual void influenceOfFoodShortage();
 
+		void breed(Sheep *other);
+
 	private:
 		static int sheepIdCounter; // 绵羊对象的编号计数器
 

@@ -1,5 +1,6 @@
 #include "Wolf.h"
 #include "..\Values\ModelValues.h"
+#include "..\CreatureAggregations\WolfAggregation.h"
 
 // 狼对象的编号计数器
 int Wolf::wolfIdCounter = 0;
@@ -63,4 +64,24 @@ void Wolf::influenceOfFoodShortage()
 {
 	healthReducedByFoodShortage = (1.0f - intake / ModelValues::getInstance()->getAppetite(CreatureSpecies::Wolf))
 		* ModelValues::getInstance()->getBasicHealthReducedByFoodShortage(CreatureSpecies::Wolf);
+}
+
+void Wolf::breed(Wolf *other) {
+	if (this->getLifeProgress() > 8 && other->getLifeProgress() > 8 &&
+		this->getBirthCoolDown() >= ModelValues::getInstance()->getBirthCoolDown(this->species)
+		&& other->getBirthCoolDown() >= ModelValues::getInstance()->getBirthCoolDown(other->species))
+	{
+		auto scene = this->getParent();
+
+		this->setBirthCoolDown(0);
+		other->setBirthCoolDown(0);
+
+		auto new_wolf = Wolf::create();
+		new_wolf->setBirthCoolDown(0);
+		WolfAggregation::getInstance()->addMember(new_wolf);
+
+		this->getParent()->addChild(new_wolf, 1);
+		new_wolf->setPosition(this->getPosition());
+	}
+
 }
