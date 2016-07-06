@@ -1,5 +1,5 @@
 #include "GrassAggregation.h"
-#include "ModelValues.h"
+#include "..\Values\ModelValues.h"
 
 GrassAggregation::GrassAggregation()
 	: CreatureAggregation(CreatureSpecies::Grass, CreatureType::Producer)

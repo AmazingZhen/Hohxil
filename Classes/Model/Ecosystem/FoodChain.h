@@ -2,9 +2,9 @@
 #define __FOOD_CHAIN_H__
 
 #include <vector>
-#include "CreatureAggregation.h"
-#include "LargeMap.h"
-#include "GameMap.h"
+#include "..\CreatureAggregations\CreatureAggregation.h"
+#include "..\..\Map\LargeMap.h"
+#include "..\..\Map\GameMap.h"
 
 using std::vector;
 

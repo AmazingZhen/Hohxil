@@ -1,7 +1,7 @@
 #include "WolfFactory.h"
-#include "Wolf.h"
-#include "WolfAggregation.h"
-#include "FoodChain.h"
+#include "Model\Creatures\Wolf.h"
+#include "Model\CreatureAggregations\WolfAggregation.h"
+#include "Model\Ecosystem\FoodChain.h"
 
 void WolfFactory::createCreature()
 {
@@ -31,7 +31,7 @@ void WolfFactory::createCreature()
 	FoodChain::getInstance()->addAggregation(woa);
 }
 
-void WolfFactory::createWolf(Scene* gameScene, const Vec2 &pos) {
+void WolfFactory::createWolf(Scene* gameScene, Vec2 &pos) {
 	WolfAggregation* woa = WolfAggregation::getInstance();
 
 	auto listener = createListener();

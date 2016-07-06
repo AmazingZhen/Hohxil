@@ -1,14 +1,12 @@
 #include "GameSchedule.h"
-#include "LargeMap.h"
-#include "GameFail.h"
-#include "GameSuccess.h"
-#include "GrassFactory.h"
-#include "SheepFactory.h"
-#include "WolfFactory.h"
-#include "SheepAggregation.h"
-#include "WolfAggregation.h"
-#include "GrassAggregation.h"
-
+#include "Map\LargeMap.h"
+#include "Map\GameFail.h"
+#include "Map\GameSuccess.h"
+#include "Factory\GrassFactory.h"
+#include "Factory\SheepFactory.h"
+#include "Factory\WolfFactory.h"
+#include "Model\CreatureAggregations\SheepAggregation.h"
+#include "Model\CreatureAggregations\WolfAggregation.h"
 
 GameSchedule* GameSchedule::gameSchedule = nullptr;
 bool GameSchedule::isPaused = true;
@@ -138,27 +136,7 @@ void GameSchedule::wolfMove() {
 }
 
 void GameSchedule::sheepEatGrass() {
-    auto sheepAgg = SheepAggregation::getInstance();
-    auto sheeps = sheepAgg->getAllMembers();
-    
-    auto grassAgg = GrassAggregation::getInstance();
-    auto grass = grassAgg->getAllMembers();
-    
-    for (int cur_sheep = 0; cur_sheep < sheeps.size(); cur_sheep++) {
-        for (int cur_grass = 0; cur_grass < grass.size(); cur_grass++) {
-            if (grass[cur_grass]->getParent() != sheeps[cur_sheep]->getParent()) {
-                continue;
-            }
-            
-            if (grass[cur_sheep]->getBoundingBox().intersectsRect(sheeps[cur_grass]->getBoundingBox())) {
-                log("sheep eat grass!!!!");
-                
-                dynamic_cast<class Sheep*>(sheeps[cur_sheep])->prey(grass[cur_grass]);
-            }
-        }
-    }
-    
-    grassAgg->clearingDeathAndUpdate();
+
 }
 
 void GameSchedule::wolfEatSheep() {

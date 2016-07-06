@@ -1,7 +1,7 @@
 #include "SheepFactory.h"
-#include "Sheep.h"
-#include "SheepAggregation.h"
-#include "FoodChain.h"
+#include "Model\Creatures\Sheep.h"
+#include "Model\CreatureAggregations\SheepAggregation.h"
+#include "Model\Ecosystem\FoodChain.h"
 
 
 void SheepFactory::createCreature()
@@ -40,7 +40,7 @@ void SheepFactory::createCreature()
 /**
 * added by xuyongzhe
 */
-void SheepFactory::createSheep(Scene* gameScene, Vec2 pos) {
+void SheepFactory::createSheep(Scene* gameScene, Vec2 &pos) {
 
 	SheepAggregation* sha = SheepAggregation::getInstance();
 

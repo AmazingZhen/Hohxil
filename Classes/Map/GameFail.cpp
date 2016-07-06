@@ -8,7 +8,7 @@ bool GameFail::init() {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	Sprite* background = Sprite::create("success_or_fail.jpg");
+	Sprite* background = Sprite::create("map/success_or_fail.jpg");
 	background->setPosition(visibleSize.width / 2, visibleSize.height / 2);
 	addChild(background);
 

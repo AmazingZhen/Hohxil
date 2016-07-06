@@ -2,9 +2,9 @@
 #define __GRASS_FACTORY_H__
 
 #include "CreatureFactory.h"
-#include "LargeMap.h"
-#include "GameMap.h"
-#include "GameMapSprite.h"
+#include "Map\LargeMap.h"
+#include "Map\GameMap.h"
+#include "Map\GameMapSprite.h"
 
 class GrassFactory : public CreatureFactory
 {

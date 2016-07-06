@@ -1,5 +1,5 @@
 #include "Sheep.h"
-#include "ModelValues.h"
+#include "..\Values\ModelValues.h"
 
 // 绵羊对象的编号计数器
 int Sheep::sheepIdCounter = 0;

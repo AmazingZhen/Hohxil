@@ -1,7 +1,7 @@
 #include "GrassFactory.h"
-#include "Grass.h"
-#include "GrassAggregation.h"
-#include "FoodChain.h"
+#include "Model\Creatures\Grass.h"
+#include "Model\CreatureAggregations\GrassAggregation.h"
+#include "Model\Ecosystem\FoodChain.h"
 
 void GrassFactory::createCreature()
 {

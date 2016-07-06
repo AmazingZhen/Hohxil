@@ -1,5 +1,5 @@
 #include "CreatureFactory.h"
-#include "Animal.h"
+#include "Model\Creatures\Animal.h"
 
 CreatureFactory::CreatureFactory(int _id) { id = _id; }
 

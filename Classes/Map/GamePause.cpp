@@ -32,8 +32,8 @@ bool GamePause::init()
 
 	//¼ÌÐøÓÎÏ·°´Å¥  
 	MenuItemImage *pContinueItem = MenuItemImage::create(
-		"ResumeNormal.png",
-		"ResumeSelected.png",
+		"UI/ResumeNormal.png",
+		"UI/ResumeSelected.png",
 		this,
 		menu_selector(GamePause::menuContinueCallback));
 

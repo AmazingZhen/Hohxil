@@ -6,7 +6,7 @@ void DragLayer::initLayer() {
 	this->padding = 10;
 	this->width = padding;
 	this->height = 2 * padding;
-	this->background = Sprite::create("drag_menu_bg.jpg");
+	this->background = Sprite::create("UI/drag_menu_bg.jpg");
 	this->background->setAnchorPoint(Vec2::ZERO);
 	this->background->setPosition(Vec2::ZERO);
 	this->addChild(background);

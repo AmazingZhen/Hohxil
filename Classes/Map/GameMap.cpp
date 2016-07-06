@@ -2,9 +2,9 @@
 #include "LargeMap.h"
 #include "GameSchedule.h"
 #include "GamePause.h"
-#include "DragLayer.h"
-#include "DragItemImage.h"
-#include "Creature.h"
+#include "Component\DragLayer.h"
+#include "Component\DragItemImage.h"
+#include "Model\Creatures\Creature.h"
 
 USING_NS_CC;
 
@@ -53,16 +53,16 @@ void GameMap::menuCloseCallback(Ref* pSender) {
 	int speed = GameSchedule::getInstance()->getSpeed();
 	MenuItemImage* intervalItem = (MenuItemImage*)LargeMap::getInstance()->getChildByTag(1)->getChildByName("Menu")->getChildByName("Interval Button");
 	if (speed == 2) {
-		intervalItem->setNormalImage(Sprite::create("SpeedTwoNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedTwoSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedTwoNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedTwoSelected.png"));
 	}
 	else if (speed == 4) {
-		intervalItem->setNormalImage(Sprite::create("SpeedFourNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedFourSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedFourNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedFourSelected.png"));
 	}
 	else if (speed == 1) {
-		intervalItem->setNormalImage(Sprite::create("SpeedOneNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedOneSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedOneNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedOneSelected.png"));
 	}
 	// return largemap
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5f, LargeMap::getInstance()));
@@ -91,18 +91,18 @@ void GameMap::menuIntervalCallback(Ref* pSender) {
 	int speed = GameSchedule::getInstance()->getSpeed();
 	MenuItemImage* intervalItem = (MenuItemImage*)this->getChildByName("Menu")->getChildByName("Interval Button");
 	if (speed == 1) {
-		intervalItem->setNormalImage(Sprite::create("SpeedTwoNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedTwoSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedTwoNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedTwoSelected.png"));
 		GameSchedule::getInstance()->setSpeed(2);
 	}
 	else if (speed == 2) {
-		intervalItem->setNormalImage(Sprite::create("SpeedFourNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedFourSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedFourNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedFourSelected.png"));
 		GameSchedule::getInstance()->setSpeed(4);
 	}
 	else if (speed == 4) {
-		intervalItem->setNormalImage(Sprite::create("SpeedOneNormal.png"));
-		intervalItem->setSelectedImage(Sprite::create("SpeedOneSelected.png"));
+		intervalItem->setNormalImage(Sprite::create("UI/SpeedOneNormal.png"));
+		intervalItem->setSelectedImage(Sprite::create("UI/SpeedOneSelected.png"));
 		GameSchedule::getInstance()->setSpeed(1);
 	}
 }
@@ -112,8 +112,8 @@ void GameMap::createMenu() {
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	auto closeItem = MenuItemImage::create(
-		"CloseNormal.png",
-		"CloseSelected.png",
+		"UI/CloseNormal.png",
+		"UI/CloseSelected.png",
 		CC_CALLBACK_1(GameMap::menuCloseCallback, this));
 	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
 		origin.y + closeItem->getContentSize().height / 2));
@@ -121,8 +121,8 @@ void GameMap::createMenu() {
 
 	// pauseItem
 	auto pauseItem = MenuItemImage::create(
-		"PauseNormal.png",
-		"PauseSelected.png",
+		"UI/PauseNormal.png",
+		"UI/PauseSelected.png",
 		CC_CALLBACK_1(GameMap::menuPauseCallback, this));
 	pauseItem->setPosition(Vec2(origin.x + visibleSize.width - pauseItem->getContentSize().width / 2,
 		origin.y + visibleSize.height - pauseItem->getContentSize().height / 2));
@@ -130,8 +130,8 @@ void GameMap::createMenu() {
 
 	// Interval Button
 	auto intervalItem = MenuItemImage::create(
-		"SpeedOneNormal.png",
-		"SpeedOneSelected.png",
+		"UI/SpeedOneNormal.png",
+		"UI/SpeedOneSelected.png",
 		CC_CALLBACK_1(GameMap::menuIntervalCallback, this));
 	intervalItem->setPosition(Vec2(origin.x + visibleSize.width - intervalItem->getContentSize().width / 2 - pauseItem->getContentSize().width,
 		origin.y + visibleSize.height - intervalItem->getContentSize().height / 2));
@@ -150,7 +150,7 @@ void GameMap::createMap() {
 
 	// Adding background.
 
-	auto background = Sprite::create("background.png");
+	auto background = Sprite::create("map/background.png");
 	Texture2D::TexParams texParams = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
 	background->getTexture()->setTexParameters(texParams);
 
@@ -167,8 +167,8 @@ void GameMap::createDragMenu() {
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	// Adding DragAnimalPanel
-	auto sheepDragMenuImage = DragItemImage::create("sheep.jpg", "sheep.jpg", "sheep.jpg", this, Sheep);
-	auto wolfDragMenuImage = DragItemImage::create("wolf.jpg", "wolf.jpg", "wolf.jpg", this, Wolf);
+	auto sheepDragMenuImage = DragItemImage::create("UI/sheep.jpg", "UI/sheep.jpg", "UI/sheep.jpg", this, Sheep);
+	auto wolfDragMenuImage = DragItemImage::create("UI/wolf.jpg", "UI/wolf.jpg", "UI/wolf.jpg", this, Wolf);
 	//DragLayer* layer = DragLayer::create(sheepDragMenuImage, wolfDragMenuImage);
 	DragLayer* layer = DragLayer::create();
 	layer->addDragItem(sheepDragMenuImage);

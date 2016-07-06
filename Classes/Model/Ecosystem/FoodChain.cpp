@@ -1,13 +1,13 @@
 #include "FoodChain.h"
-#include "LargeMap.h"
-#include "GameMapSprite.h"
-#include "CreatureFactory.h"
-#include "GrassFactory.h"
-#include "SheepFactory.h"
-#include "WolfFactory.h"
-#include "GrassAggregation.h"
-#include "SheepAggregation.h"
-#include "WolfAggregation.h"
+#include "Map\LargeMap.h"
+#include "Map\GameMapSprite.h"
+#include "Factory\CreatureFactory.h"
+#include "Factory\GrassFactory.h"
+#include "Factory\SheepFactory.h"
+#include "Factory\WolfFactory.h"
+#include "Model\CreatureAggregations\GrassAggregation.h"
+#include "Model\CreatureAggregations\SheepAggregation.h"
+#include "Model\CreatureAggregations\WolfAggregation.h"
 
 using std::vector;
 

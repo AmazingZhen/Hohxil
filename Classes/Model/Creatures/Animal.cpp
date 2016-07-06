@@ -1,6 +1,6 @@
 #include "Animal.h"
-#include "ModelValues.h"
-#include "LargeMap.h"
+#include "..\Values\ModelValues.h"
+#include "..\..\Map\LargeMap.h"
 
 using std::vector;
 

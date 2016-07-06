@@ -1,7 +1,7 @@
 #ifndef __SHEEP_AGGREGATION_H__
 #define __SHEEP_AGGREGATION_H__
 
-#include "Sheep.h"
+#include "..\Creatures\Sheep.h"
 #include "CreatureAggregation.h"
 
 class SheepAggregation : public CreatureAggregation

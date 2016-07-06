@@ -1,5 +1,5 @@
 #include "Wolf.h"
-#include "ModelValues.h"
+#include "..\Values\ModelValues.h"
 
 // 狼对象的编号计数器
 int Wolf::wolfIdCounter = 0;
