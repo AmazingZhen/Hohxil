@@ -20,6 +20,8 @@ class GrassAggregation : public CreatureAggregation
 		virtual float produceEnergyPerUnitTime();
 		// 单位时间能量消耗量（作为生产者）
 		virtual float consumeEnergyPerUnitTime();
+        // check whether or not there had a grass instanse
+        bool hasGrass(const cocos2d::Vec2 & position);
 
 	private:
 		static GrassAggregation* instance; // 单实例

@@ -69,3 +69,54 @@ void Grass::setMassGainedPerUnitTime(const float& massGainedPerUnitTime)
 {
 	this->massGainedPerUnitTime = massGainedPerUnitTime;
 }
+
+// Grass grow up and random grow to other position
+void Grass::grow() {
+    // grow in position
+    float massChangeRadio = 1.0f;
+    mass += massGainedPerUnitTime * massChangeRadio - massConsumedPerUnitTime * massChangeRadio;
+    mass = mass > massUpperBound ? massUpperBound : mass;
+    
+}
+
+void Grass::breed() {
+    if ((massUpperBound - massLowerBound) / 2.0 < mass) {
+        
+        cocos2d::Size boundary = cocos2d::Director::getInstance()->getVisibleSize();
+        
+        float currentX = getPosition().x;
+        float currentY = getPosition().y;
+        float width = getBoundingBox().getMaxX() - getBoundingBox().getMinX();
+        float height = getBoundingBox().getMaxY() - getBoundingBox().getMinY();
+        float x;
+        float y;
+        auto grassAgg = GrassAggregation::getInstance();
+        
+        for (float moveX = 0.0 - width; moveX <= width; moveX += width) {
+            for (float moveY = 0.0 - height; moveY <= height; moveY += height) {
+                x = currentX + moveX;
+                y = currentY + moveY;
+                cocos2d::Vec2 position(x, y);
+                if ((0 < x && x < boundary.width) &&
+                    (0 < y && y < boundary.height) &&
+                    !grassAgg->hasGrass(position)) {
+                    // change other position
+                    if (randomNum(0.0, 1.0) < (birthRate + 0.0f)) {
+                        
+                        auto scene = this->getParent();
+                        
+                        Creature* newGrass = Grass::create();
+                        grassAgg->addMember(newGrass);
+                        
+                        this->getParent()->addChild(newGrass);
+                        
+                        newGrass->setPosition(position);
+                        log("grass to other position");
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+

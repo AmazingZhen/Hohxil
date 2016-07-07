@@ -90,3 +90,13 @@ float GrassAggregation::consumeEnergyPerUnitTime()
 	}
 	return totalEnergyConsumed;
 }
+
+// check whether or not there had a grass instanse
+bool GrassAggregation::hasGrass(const cocos2d::Vec2 &position) {
+    for (unsigned int i = 0; i < members.size(); i++) {
+        if (((class Grass *)members[i])->getPosition() == position) {
+            return false;
+        }
+    }
+    return true;
+}

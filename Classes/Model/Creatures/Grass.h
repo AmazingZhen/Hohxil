@@ -14,6 +14,13 @@ class Grass : public Plant
 
 		// 被捕食
 		virtual void preyed();
+    
+        // growth
+        virtual void grow();
+    
+        // breed
+        void breed();
+
 
 		// 获取单位时间内因光合作用增加的质量
 		float getMassGainedPerUnitTime() const;
