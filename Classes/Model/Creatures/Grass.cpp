@@ -102,13 +102,11 @@ void Grass::breed() {
                     !grassAgg->hasGrass(position)) {
                     // change other position
                     if (randomNum(0.0, 1.0) < (birthRate + 0.0f)) {
-                        
-                        auto scene = this->getParent();
-                        
+                                                
                         Creature* newGrass = Grass::create();
                         grassAgg->addMember(newGrass);
                         
-                        this->getParent()->addChild(newGrass);
+                        this->getParent()->addChild(newGrass, 1);
                         
                         newGrass->setPosition(position);
                         log("grass to other position");
