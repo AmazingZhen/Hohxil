@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "Map\LargeMap.h"
+#include "Map\InitialLayer.h"
 
 USING_NS_CC;
 
@@ -76,7 +76,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
 
-    auto scene = LargeMap::getInstance();
+    auto scene = InitialLayer::createScene();
 
 	scene->retain();
 
