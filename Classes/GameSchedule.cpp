@@ -6,6 +6,7 @@
 #include "Factory\SheepFactory.h"
 #include "Factory\WolfFactory.h"
 #include "Model\CreatureAggregations\SheepAggregation.h"
+#include "Model\CreatureAggregations\GrassAggregation.h"
 #include "Model\CreatureAggregations\WolfAggregation.h"
 #include "Model\Creatures\Sheep.h"
 
@@ -29,9 +30,6 @@ bool GameSchedule::init() {
 
 	LargeMap *largeMap = (LargeMap*)LargeMap::getInstance();
 
-	// auto grassFactory = GrassFactory();
-	// grassFactory.createCreature();
-
 	for (int i = 0; i < largeMap->getMapSize(); i++) {
 		auto sheepFactory = SheepFactory(i);
 		
@@ -39,6 +37,9 @@ bool GameSchedule::init() {
 
 		auto wolfFactory = WolfFactory(i);
 		wolfFactory.createCreature();
+
+		auto grassFactory = GrassFactory();
+		grassFactory.createCreature();
 	}
 
 	return true;
@@ -151,7 +152,7 @@ void GameSchedule::sheepEatGrass() {
                 continue;
             }
             
-            if (grass[cur_sheep]->getBoundingBox().intersectsRect(sheeps[cur_grass]->getBoundingBox())) {
+            if (sheeps[cur_sheep]->getBoundingBox().intersectsRect(grass[cur_grass]->getBoundingBox())) {
                 log("sheep eat grass!!!!");
                 
                 dynamic_cast<class Sheep*>(sheeps[cur_sheep])->prey(grass[cur_grass]);

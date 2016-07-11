@@ -9,7 +9,9 @@
 class GrassFactory : public CreatureFactory
 {
 	public:
-    
+		GrassFactory() {};
+		GrassFactory(int _id) { id = _id; };
+
 		virtual void createCreature();
 };
 
