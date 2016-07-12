@@ -230,12 +230,15 @@ void GameSchedule::checkSuccessOrFail() {
 	auto sheepAgg = SheepAggregation::getInstance();
 	auto sheeps = sheepAgg->getAllMembers();
 
+	auto grassAgg = GrassAggregation::getInstance();
+	auto grass = grassAgg->getAllMembers();
+
 	if (GameSchedule::leftTimes <= 0) {
 		end();
 		//pause();
 		auto scene = GameSuccess::createScene();
 		Director::getInstance()->replaceScene(TransitionFade::create(0.5f, scene));
-	} else if (wolfs.size() == 0 || sheeps.size() == 0) {
+	} else if (wolfs.size() == 0 || sheeps.size() == 0 || grass.size() == 0) {
 		end();
 		//pause();
 		auto scene = GameFail::createScene();

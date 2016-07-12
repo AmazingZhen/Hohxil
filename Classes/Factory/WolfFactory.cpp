@@ -24,7 +24,7 @@ void WolfFactory::createCreature()
 		wolf->setPosition(Vec2(origin.x + randomNum(0.0, visibleSize.width),
 			origin.y + randomNum(0.0, visibleSize.height)));
 
-		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), wolf);
+		//Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), wolf);
 	}
 
 	//添加到食物链
@@ -41,5 +41,5 @@ void WolfFactory::createWolf(Scene* gameScene, Vec2 &pos) {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	wolf->setPosition(pos);
-	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), wolf);
+	//Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener->clone(), wolf);
 }
